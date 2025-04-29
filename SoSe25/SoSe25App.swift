@@ -13,7 +13,7 @@ struct SoSe25App: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ParksScreen()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
