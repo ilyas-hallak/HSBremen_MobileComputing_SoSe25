@@ -17,24 +17,3 @@ struct Hello: View {
 #Preview {
     Hello()
 }
-
-
-class CustomStack {
-    init(action: () -> Void) {
-        print("button")
-    }
-}
-
-func createStack() -> CustomStack {
-    CustomStack {
-        print("created")
-    }
-}
-
-func createStack2() -> CustomStack {
-    return CustomStack(action: {
-        print("created2")
-    })
-}
-
-

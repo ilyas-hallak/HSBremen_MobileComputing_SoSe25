@@ -53,7 +53,12 @@ struct ParksScreen: View {
             }
             .onAppear {
                 viewModel.fetchParks()
-            }.navigationTitle(viewModel.title)
+            }
+            .refreshable {
+                counter = 0
+                counter = await viewModel.fetchParksHeavyLoading().count
+            }
+            .navigationTitle(viewModel.title)
             
             if counter == 0 {
                 Text("data loading...")
