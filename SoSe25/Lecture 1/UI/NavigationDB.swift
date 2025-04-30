@@ -15,20 +15,19 @@ struct NavigationDB: View {
     @State private var showingAlert = false
     @State private var inputText = ""
     
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \ParkEntity.name, ascending: true)],
-        animation: .default)
+    @FetchRequest(sortDescriptors: [], animation: .default)
     private var parks: FetchedResults<ParkEntity>
+    
+    private let repository = SimpleParkRepository()
     
     var body: some View {
         NavigationStack {
-            
             List {
                 ForEach(parks, id: \.self) { park in
                     NavigationLink(park.name ?? "", value: park)
                         .swipeActions(content: {
                             Button(role: .destructive, action: {
-                                delete(park: park)
+                                repository.delete(park: park)
                             }, label: {
                                 Image(systemName: "trash")
                             })
@@ -59,20 +58,11 @@ struct NavigationDB: View {
     private func Alert() -> some View {
         TextField("TextField", text: $inputText)
         Button("OK", role: .cancel) {
-            createParkEntity(name: inputText)
+            repository.createParkEntity(name: inputText)
         }
     }
     
-    private func createParkEntity(name: String) {
-        let entitiy = ParkEntity(context: viewContext)
-        entitiy.name = name
-        try? viewContext.save()
-    }
     
-    private func delete(park: ParkEntity) {
-        viewContext.delete(park)
-        try? viewContext.save()
-    }
 }
 
 struct ParkDetailsDB: View {

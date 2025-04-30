@@ -13,7 +13,20 @@ struct SoSe25App: App {
 
     var body: some Scene {
         WindowGroup {
-            ParksScreen()
+
+            // Remove the comment marks from the examples, but only one at a time
+            
+            // Lecture 1 Examples:
+            
+            // Hello()
+            // Navigation()
+            NavigationDB()
+            
+            
+            // Lexture 2 Examples
+            
+            // ParksScreen()
+            
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

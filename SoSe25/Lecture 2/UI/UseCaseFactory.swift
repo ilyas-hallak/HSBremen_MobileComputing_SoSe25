@@ -23,4 +23,8 @@ class UseCaseFactory {
     class func fetchAllParksHeavyLoad() -> FetchParksHeavyLoadkUseCase {
         return FetchParksHeavyLoadkUseCase(repository: CoreDataParkRepository())
     }
+    
+    class func deleteParkUseCase() -> DeleteParkUseCase {
+        return DeleteParkUseCase(repository: CoreDataParkRepository())
+    }
 }

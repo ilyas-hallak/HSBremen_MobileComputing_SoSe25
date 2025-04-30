@@ -17,5 +17,4 @@ class ParkAPI {
             Park(name: "Rocky Mountain National Park"),            
         ]
     }
-    
 }
